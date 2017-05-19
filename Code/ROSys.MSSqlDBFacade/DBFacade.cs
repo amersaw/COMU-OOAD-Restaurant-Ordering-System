@@ -13,28 +13,13 @@ namespace ROSys.MSSqlDBFacade
     public class DBFacade : IROSysDBFacade
     {
         private SqlConnection conn = null;
-
-
-        #region Singleton Stuff
-
-        private static DBFacade instance = null;
-
-        private DBFacade()
-        {
-        }
-
-        public static DBFacade Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = GenerateInstance();
-                return instance;
-            }
-        }
         
-        #endregion
-
+        public DBFacade()
+        {
+            //DBFacade res = new DBFacade();
+            string connectionString = ConfigurationManager.ConnectionStrings["MSSqlConnection"].ConnectionString;
+            conn = new SqlConnection(connectionString);
+        }
 
         #region Interface Implementation
 
@@ -49,15 +34,15 @@ namespace ROSys.MSSqlDBFacade
             IMapper mapper = GetMapper(type);
             return mapper.GetAll();
         }
-        
+
         public bool Put(object obj)
         {
-            throw new NotImplementedException();
+            IMapper mapper = GetMapper(obj.GetType());
+            return mapper.Put(obj);
         }
 
         #endregion
-
-
+        
         #region Helper Methods
 
         private IMapper GetMapper(Type type)
@@ -68,15 +53,7 @@ namespace ROSys.MSSqlDBFacade
             }
             throw new NotSupportedException();
         }
-
-        private static DBFacade GenerateInstance()
-        {
-            DBFacade res = new DBFacade();
-            string connectionString = ConfigurationManager.ConnectionStrings["MSSqlConnection"].ConnectionString;
-            res.conn = new SqlConnection(connectionString);
-            return res;
-        }
-
+        
         #endregion
     }
 }

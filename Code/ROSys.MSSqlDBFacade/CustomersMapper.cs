@@ -36,6 +36,7 @@ namespace ROSys.MSSqlDBFacade
         {
             string query = string.Format("SELECT * FROM {0}", TABLE_NAME);
             List<object> res = new List<object>();
+            if (conn.State == System.Data.ConnectionState.Closed) conn.Open();
             using (SqlCommand cmd = new SqlCommand(query, conn))
             using (SqlDataReader rdr = cmd.ExecuteReader())
                 while (rdr.Read())
@@ -50,12 +51,13 @@ namespace ROSys.MSSqlDBFacade
                 Customer cus = (Customer)obj;
 
                 //todo:Check for SQL Injection!
-                string query = string.Format("INSERT INTO {0} ('FirstName','LastName') VALUES('{1}','{2}');", TABLE_NAME, cus.FirstName, cus.LastName);
+                string query = string.Format("INSERT INTO {0} (Id,FirstName,LastName) VALUES('{1}','{2}','{3}');", TABLE_NAME, cus.Id .ToString() ,cus.FirstName, cus.LastName);
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                     return cmd.ExecuteNonQuery() > 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                throw;
                 return false;
             }
         }
@@ -66,6 +68,7 @@ namespace ROSys.MSSqlDBFacade
         {
             if (rdr == null) return null;
             Customer res = new Customer();
+            res.Id = new Guid(rdr["Id"].ToString());
             res.FirstName = rdr["FirstName"].ToString();
             res.LastName = rdr["LastName"].ToString();
             return res;
