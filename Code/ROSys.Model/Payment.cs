@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ROSys.Model
 {
-    public class Payment
+    public class Payment : IEntity
     {
+        public Guid Id { get; set; }
         public decimal Amount { get; set; }
         public string Currency { get; set; }
         public DateTime DateTime { get; set; }
-        
+
     }
 }

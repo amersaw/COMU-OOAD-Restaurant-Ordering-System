@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ROSys.Model
 {
-    public class Order
+    public class Order : IEntity
     {
+        public Guid Id { get; set; }
         public DateTime TimeDate { get; set; }
         public decimal Amount { get; set; }
         public bool IsCompleted { get; set; }

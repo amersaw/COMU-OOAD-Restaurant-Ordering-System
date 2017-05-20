@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ROSys.Model
 {
-    public class FoodLineItem
+    public class FoodLineItem : IEntity
     {
+        public Guid Id { get; set; }
         public int Count { get; set; }
         public FoodDescription Description { get; set; }
     }

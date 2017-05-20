@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ROSys.Model
 {
-    class Receipt
+    class Receipt : IEntity
     {
+        public Guid Id { get; set; }
     }
 }
