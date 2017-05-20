@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ROSys.Model
+namespace ROSys.WebClient.Models
 {
-    public class FoodDescription :IEntity
+    public class FoodDescription 
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -16,5 +16,15 @@ namespace ROSys.Model
 
         public double Quantity { get; set; }
         public QuantityUnit QuantityUnit { get; set; }
+        public FoodDescription(Model.FoodDescription fd)
+        {
+            this.Id = fd.Id;
+            this.Name = fd.Name;
+            this.Description = fd.Description;
+            this.Category = fd.Category;
+            this.Price = fd.Price;
+            this.Quantity = fd.Quantity;
+            this.QuantityUnit = (QuantityUnit)fd.QuantityUnit;
+        }
     }
 }

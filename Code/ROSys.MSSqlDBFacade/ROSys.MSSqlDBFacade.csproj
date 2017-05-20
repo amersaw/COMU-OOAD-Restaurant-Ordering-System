@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CustomersMapper.cs" />
     <Compile Include="DBFacade.cs" />
+    <Compile Include="FoodDescriptionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

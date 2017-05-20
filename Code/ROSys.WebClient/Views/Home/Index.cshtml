@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Restaurant Ordering System</h1>
+    <p class="lead">ROSys is an ordering system</p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-push-4 col-md-4">
+        <h2>Put an order from here</h2>
+        <p>
+
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("StartOrder", new { tableNo = ViewBag.TableNo })">Start Order &raquo;</a></p>
+    </div>
+</div>

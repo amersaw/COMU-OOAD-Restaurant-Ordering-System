@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ROSys.Model
+namespace ROSys.WebClient.Models
 {
-    class Receipt : IEntity
+    class Receipt
     {
-        public Guid Id { get; set; }
     }
 }

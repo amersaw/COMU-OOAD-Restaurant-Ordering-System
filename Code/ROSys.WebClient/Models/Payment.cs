@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ROSys.Model
+namespace ROSys.WebClient.Models
 {
-    public class Payment : IEntity
+    public class Payment
     {
-        public Guid Id { get; set; }
         public decimal Amount { get; set; }
         public string Currency { get; set; }
         public DateTime DateTime { get; set; }

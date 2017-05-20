@@ -1,0 +1,87 @@
+﻿@model List<ROSys.Model.FoodDescription>
+@{
+    ViewBag.Title = "StartOrder";
+}
+@section scripts{
+
+
+
+    <script>
+        var selectedFood = undefined;
+        var tableNo = @ViewBag.TableNo ;
+        $(document).ready(function () {
+
+            $('.selectFood').click(function (a, c) {
+
+                selectedFood = $(a.currentTarget).data('id');
+                console.log(selectedFood);
+                $('#myModal').modal('show');
+            })
+            $('#btnSelectFood').click(function (a, c) {
+                //selectedFood
+                var amount = $('#foodAmount').val();
+                $.ajax(
+                    {
+                        url: '@Url.Action("SelectFood")',
+                        type:'Post',
+                        data: { amount: amount, foodId: selectedFood , tableNo:tableNo}
+                        , success: function (data) {
+                            console.log(data);
+                            $('#foodAmount').val("");
+                            $('#myModal').modal('hide');
+                            updateOrderDetails(data);
+                        }
+                    }
+                    )
+            });
+        });
+        function updateOrderDetails(d){
+            var div= $('#orderDetails');
+            var result = "";
+            div.html("");
+            for(var i = 0; i<d.length;i++){
+                var desc = d[i].Description;
+                result += desc.Name + " ("+desc.Description+") " + desc.Price + " TL   ("+d[i].Count+" tane)<br/>";
+            }
+            div.html(result);
+        }
+    </script>
+}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <label>Amount : </label>
+                <input type="number" id="foodAmount" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSelectFood">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <ul>
+        @foreach (var fd in Model)
+        {
+            <li>@fd.Name [@fd.Price TL] (@fd.Description)  <a data-id="@fd.Id" class="selectFood " href="#">Sec</a></li>
+        }
+    </ul>
+
+
+    <div id="orderDetails">
+
+    </div>
+
+
+    <a href="@Url.Action("EndOrder", new { tableNo = ViewBag.TableNo })" class="btn btn-danger pull-right" >End Order</a>
+    &nbsp;
+</div>

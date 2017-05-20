@@ -41,16 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
-    <Compile Include="IEntity.cs" />
     <Compile Include="FoodDescription.cs" />
-    <Compile Include="FoodLineItem.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="LineOfCredit.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="Payment.cs" />
-    <Compile Include="Personel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuantityUnit.cs" />
-    <Compile Include="Receipt.cs" />
     <Compile Include="Table.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

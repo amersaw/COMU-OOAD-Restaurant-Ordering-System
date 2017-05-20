@@ -12,6 +12,7 @@ namespace ROSys.Contracts
         bool Put(object obj);
 
         object Get(Guid id, Type type);
+
         List<object> GetAll(Type type);
         
     }

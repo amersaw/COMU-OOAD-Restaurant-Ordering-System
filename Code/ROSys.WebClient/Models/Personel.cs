@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ROSys.Model
+namespace ROSys.WebClient.Models
 {
-    public class Personel : IEntity
+    public class Personel
     {
-        public Guid Id { get; set; }
         public string NationalNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

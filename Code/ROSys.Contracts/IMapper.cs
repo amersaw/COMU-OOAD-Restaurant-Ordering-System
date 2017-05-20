@@ -9,6 +9,7 @@ namespace ROSys.Contracts
     public interface IMapper
     {
         object Get(Guid id);
+
         List<object> GetAll();
 
         bool Put(object obj);

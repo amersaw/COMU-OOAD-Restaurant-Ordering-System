@@ -48,9 +48,11 @@ namespace ROSys.MSSqlDBFacade
         private IMapper GetMapper(Type type)
         {
             if (type == typeof(Customer))
-            {
                 return new CustomersMapper(conn);
-            }
+
+            else if (type == typeof(FoodDescription))
+                return new FoodDescriptionMapper(conn);
+
             throw new NotSupportedException();
         }
         
