@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="FoodDescription.cs" />
     <Compile Include="FoodLineItem.cs" />
     <Compile Include="LineOfCredit.cs" />

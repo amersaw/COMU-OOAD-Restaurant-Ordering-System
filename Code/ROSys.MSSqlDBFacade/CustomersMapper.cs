@@ -22,12 +22,13 @@ namespace ROSys.MSSqlDBFacade
         public object Get(Guid id)
         {
             string query = string.Format("SELECT * FROM {0} WHERE Id = '{1}'", TABLE_NAME, id.ToString());
+            if (conn.State == System.Data.ConnectionState.Closed) conn.Open();
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
-                    rdr.Read();
-                    return DataReaderToCustomer(rdr);
+                    bool res = rdr.Read();
+                    return res ? DataReaderToCustomer(rdr):null;
                 }
             }
         }
@@ -52,6 +53,7 @@ namespace ROSys.MSSqlDBFacade
 
                 //todo:Check for SQL Injection!
                 string query = string.Format("INSERT INTO {0} (Id,FirstName,LastName) VALUES('{1}','{2}','{3}');", TABLE_NAME, cus.Id .ToString() ,cus.FirstName, cus.LastName);
+            if (conn.State == System.Data.ConnectionState.Closed) conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                     return cmd.ExecuteNonQuery() > 0;
             }
