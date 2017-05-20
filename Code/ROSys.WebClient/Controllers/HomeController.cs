@@ -61,6 +61,7 @@ namespace ROSys.WebClient.Controllers
         {
             var table = Globals.Tables.FirstOrDefault(t => t.Number == tableNo.ToString());
             table.SubmitOrder();
+            return RedirectToAction("Index", new { tableNo = tableNo });
 //            return RedirectToAction("OderPreview", new { tableNo = tableNo });
 
         }

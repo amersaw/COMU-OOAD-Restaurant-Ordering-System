@@ -2,6 +2,13 @@
 @{
     ViewBag.Title = "StartOrder";
 }
+
+<style>
+    .list-group-item-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+}
+</style>
 @section scripts{
 
 
@@ -15,6 +22,7 @@
 
                 selectedFood = $(a.currentTarget).data('id');
                 console.log(selectedFood);
+                $('#myModalLabel').html($(a.currentTarget).data('title'))
                 $('#myModal').modal('show');
             })
             $('#btnSelectFood').click(function (a, c) {
@@ -36,12 +44,16 @@
             });
         });
         function updateOrderDetails(d){
-            var div= $('#orderDetails');
+            var div= $('#selectedFoodsList');
             var result = "";
             div.html("");
             for(var i = 0; i<d.length;i++){
                 var desc = d[i].Description;
-                result += desc.Name + " ("+desc.Description+") " + desc.Price + " TL   ("+d[i].Count+" tane)<br/>";
+
+                //<li class="list-group-item">Cras justo odio</li>
+                //Cras justo odio</li>
+
+                result += '<li class="list-group-item list-group-item-success">' + desc.Name+ " ("+d[i].Count+" tane) &nbsp;&nbsp;&nbsp;&nbsp; - "+ desc.Price+" TL"+ '</li>' //+ " ("+desc.Description+") " + desc.Price + " TL   ("+d[i].Count+" tane)<br/>";
             }
             div.html(result);
         }
@@ -54,7 +66,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
                 <label>Amount : </label>
@@ -68,20 +80,36 @@
     </div>
 </div>
 
-<div>
-    <ul>
-        @foreach (var fd in Model)
-        {
-            <li>@fd.Name [@fd.Price TL] (@fd.Description)  <a data-id="@fd.Id" class="selectFood " href="#">Sec</a></li>
-        }
-    </ul>
 
+<ul class="list-group"></ul>
 
-    <div id="orderDetails">
+<h3>Available Foods :</h3>
 
+<ul class="list-group">
+
+    @foreach (var fd in Model)
+    {
+        <a data-id="@fd.Id" href="#" class="selectFood" data-title="@fd.Name">
+            <li class="list-group-item">
+                <span class="badge">@fd.Price TL</span>
+                @fd.Name (@fd.Description)
+
+            </li>
+        </a>
+
+    }
+</ul>
+<hr />
+<h3>Selected Foods:</h3>
+<div class="row">
+    <div class="col-md-6">
+        <ul class="list-group" id="selectedFoodsList">
+            <li class="list-group-item list-group-item-success">NOTHING</li>
+        </ul>
     </div>
-
-
-    <a href="@Url.Action("EndOrder", new { tableNo = ViewBag.TableNo })" class="btn btn-danger pull-right" >End Order</a>
-    &nbsp;
 </div>
+
+<a href="@Url.Action("EndOrder", new { tableNo = ViewBag.TableNo })" class="btn btn-info  btn-block">End Order</a>
+    &nbsp;
+
+
