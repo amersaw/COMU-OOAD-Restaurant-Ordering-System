@@ -1,0 +1,46 @@
+﻿@model List<ROSys.WebClient.Models.FoodLineItem>
+@{
+    ViewBag.Title = "FinalDetails";
+    double price = (double)Model.Sum(a => a.Count * a.Description.Price) + ViewBag.TipAmount;
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>Count</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ROSys.WebClient.Models.FoodLineItem item in Model)
+        {
+            <tr>
+                <td>@item.Description.Name</td>
+                <td>@item.Description.Description</td>
+                <td>@item.Description.Price</td>
+                <td>@item.Count</td>
+                <td>@(item.Count * item.Description.Price)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">Tip Amount : </td>
+            <td>@ViewBag.TipAmount</td>
+        </tr>
+        <tr>
+            <td colspan="4">Final PRICE : </td>
+            <td>@price</td>
+        </tr>
+    </tfoot>
+</table>
+<
+
+
+<a href="@Url.Action("MakePayment", new { tableNo = ViewBag.TableNo })" class="btn btn-success btn-lg btn-block">
+    Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>
+</a>

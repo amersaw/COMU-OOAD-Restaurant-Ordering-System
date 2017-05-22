@@ -10,7 +10,7 @@ namespace ROSys.WebClient.Models
         public string Number { get; set; }
         public int NumberOfPerson { get; set; }
 
-        public Payment CurrentPayment { get; set; }
+        //public Payment CurrentPayment { get; set; }
         public Customer CurrentCustomer { get; set; }
         public Guid Id { get; internal set; }
 
@@ -22,9 +22,20 @@ namespace ROSys.WebClient.Models
                 FirstName = "Ahmet",
                 LastName = "Özturk",
                 Orders = new List<Order>()
+                ,
+                currentOrder = new Order()
             };
         }
 
+        internal void MarkOrderAsReady()
+        {
+            CurrentCustomer.MarkOrderAsReady();
+        }
+
+        internal void SetTipAmount(double v)
+        {
+            CurrentCustomer.SetTipAmount(v);
+        }
 
         public void StartOrder()
         {
@@ -42,7 +53,7 @@ namespace ROSys.WebClient.Models
 
         }
 
-        internal List<FoodLineItem> GetDetails()
+        public List<FoodLineItem> GetDetails()
         {
             return CurrentCustomer.GetDetails();
         }
@@ -55,6 +66,21 @@ namespace ROSys.WebClient.Models
         internal void SubmitOrder()
         {
             CurrentCustomer.SubmitOrder();
+        }
+
+        public void StartPayment()
+        {
+            CurrentCustomer.StartPayment();
+        }
+
+        internal void MakePayment()
+        {
+            CurrentCustomer.MakePayment();
+        }
+
+        internal Receipt GetReceipt()
+        {
+            return CurrentCustomer.GetReceipt();
         }
     }
 }

@@ -125,21 +125,26 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="DBFacadeFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
+    <Compile Include="Ledger.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\FoodDescription.cs" />
     <Compile Include="Models\FoodLineItem.cs" />
     <Compile Include="Models\LineOfCredit.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Personel.cs" />
     <Compile Include="Models\QuantityUnit.cs" />
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\Table.cs" />
+    <Compile Include="OrdersContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +154,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Tick.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -179,6 +185,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\StartOrder.cshtml" />
     <Content Include="Views\Home\OderPreview.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\Details.cshtml" />
+    <Content Include="Views\Payment\FinalDetails.cshtml" />
+    <Content Include="Views\Payment\Receipt.cshtml" />
+    <Content Include="Views\Order\Ready.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

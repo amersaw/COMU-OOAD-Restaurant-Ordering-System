@@ -38,6 +38,16 @@ namespace ROSys.WebClient.Models
             SetCurrentOrder(o);
         }
 
+        internal void MarkOrderAsReady()
+        {
+            currentOrder.MarkOrderAsReady();
+        }
+
+        internal void SetTipAmount(double v)
+        {
+            currentOrder.SetTipAmount(v);
+        }
+
         public void CreateLineItem(FoodDescription desc, int amount)
         {
             currentOrder.CreateLineItem(desc, amount);
@@ -56,6 +66,25 @@ namespace ROSys.WebClient.Models
         internal void SubmitOrder()
         {
             currentOrder.SubmitOrder();
+        }
+
+
+        public void StartPayment()
+        {
+            currentOrder.StartPayment();
+        }
+
+        internal void MakePayment()
+        {
+            currentOrder.MakePayment();
+
+            Ledger.AddOrder(currentOrder);
+            //the current order attached to the current customer became associated with the Ledger instance
+        }
+
+        internal Receipt GetReceipt()
+        {
+            return currentOrder.GetReceipt();
         }
     }
 }

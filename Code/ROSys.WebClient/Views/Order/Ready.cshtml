@@ -1,0 +1,36 @@
+﻿@model List<ROSys.WebClient.Models.FoodLineItem>
+@{
+    ViewBag.Title = "Order Ready";
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>Count</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ROSys.WebClient.Models.FoodLineItem item in Model)
+        {
+            <tr>
+                <td>@item.Description.Name</td>
+                <td>@item.Description.Description</td>
+                <td>@item.Description.Price</td>
+                <td>@item.Count</td>
+                <td>@(item.Count * item.Description.Price)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br/>
+<center>
+
+    <img width="250px" src="~/Images/Tick.png" />
+</center>
+
+<a class="btn btn-default" href="@Url.Action("Index")">Geri Don</a>

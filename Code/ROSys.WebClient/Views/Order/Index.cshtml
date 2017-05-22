@@ -1,0 +1,26 @@
+﻿@model List<ROSys.WebClient.Models.Table>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>In Progress Orders :</h2>
+<div class="row">
+    @foreach (var l in Model)
+    {
+        <div class="col-md-4">
+            <div class="well">
+                <h3>Table @l.Number</h3>
+                <br />
+                <ul>
+                    @foreach (var i in l.GetDetails())
+                    {
+                        <li>@i.Description.Name (@i.Count)</li>
+                    }
+                </ul>
+                <a class="btn btn-default pull-right" href="@Url.Action("MarkOrderAsReady", new { tableNo =l.Number })" > Mark As Ready</a>
+                &nbsp;
+                
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,48 @@
+﻿@model List<ROSys.WebClient.Models.FoodLineItem>
+@{
+    ViewBag.Title = "Order Details";
+    decimal price = Model.Sum(a => a.Count * a.Description.Price);
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>Count</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ROSys.WebClient.Models.FoodLineItem item in Model)
+        {
+            <tr>
+                <td>@item.Description.Name</td>
+                <td>@item.Description.Description</td>
+                <td>@item.Description.Price</td>
+                <td>@item.Count</td>
+                <td>@(item.Count * item.Description.Price)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">TOTAL PRICE : </td>
+            <td>@price</td>
+        </tr>
+    </tfoot>
+</table>
+<form action="@Url.Action("AddTip")">
+    <input type="hidden" id="tableNo" name="tableNo" value="@ViewBag.TableNo" />
+    
+    <div class="row">
+        <div class="col-md-4"><label>Tip Amount :</label></div>
+        <div class="col-md-3"> <input name="tip" type="number" class="form-control" /></div>
+        <div class="col-md-5">
+            <input type="submit"  class="btn btn-default pull-right" value="Finish Payment"/>
+        </div>
+    </div>
+</form>
+
+&nbsp;
