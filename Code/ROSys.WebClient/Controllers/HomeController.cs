@@ -9,6 +9,11 @@ namespace ROSys.WebClient.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult Login(int tableNo=1)
+        {
+            ViewBag.TableNo = tableNo;
+            return View();
+        }
         public ActionResult Index(int tableNo)
         {
             ViewBag.TableNo = tableNo;

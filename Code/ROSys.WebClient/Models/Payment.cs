@@ -20,7 +20,7 @@ namespace ROSys.WebClient.Models
             TipAmount = v;
         }
 
-        internal void MarkAsPCompleted()
+        internal void MarkAsCompleted()
         {
             this.IsCompleted = true;
         }

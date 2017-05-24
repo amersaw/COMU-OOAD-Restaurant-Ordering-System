@@ -144,7 +144,6 @@
     <Compile Include="Models\QuantityUnit.cs" />
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\Table.cs" />
-    <Compile Include="OrdersContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,9 +153,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Logo.png" />
     <Content Include="Images\Tick.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -191,6 +193,7 @@
     <Content Include="Views\Payment\Receipt.cshtml" />
     <Content Include="Views\Order\Ready.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

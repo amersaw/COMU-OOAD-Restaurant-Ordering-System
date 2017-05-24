@@ -90,7 +90,7 @@ namespace ROSys.WebClient.Models
 
         internal void MakePayment()
         {
-            p.MarkAsPCompleted();
+            p.MarkAsCompleted();
             p.PaymentReceipt = new Models.Receipt(this, DateTime.Now, "Cash");
         }
 

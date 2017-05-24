@@ -8,6 +8,7 @@ namespace ROSys.WebClient
 {
     public static class Globals
     {
+        //Instead Of DB
         public static List<Models.Table> Tables { get; set; }
     }
 }

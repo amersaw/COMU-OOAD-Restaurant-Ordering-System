@@ -21,8 +21,6 @@ namespace ROSys.WebClient.Models
             {
                 FirstName = "Ahmet",
                 LastName = "Özturk",
-                Orders = new List<Order>()
-                ,
                 currentOrder = new Order()
             };
         }

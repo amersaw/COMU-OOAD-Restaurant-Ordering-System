@@ -11,7 +11,7 @@ namespace ROSys.WebClient.Models
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public List<Order> Orders { get; set; }
+        private List<Order> Orders { get; set; }
 
         public Order currentOrder { get; set; }
 
